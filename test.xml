@@ -1,0 +1,92 @@
+﻿<?xml version='1.0' encoding='UTF-8'?>
+<Root>
+ <FileDescription>
+  <VideoFileName>test.avi</VideoFileName>
+  <CreateDate>2015/01/21</CreateDate>
+  <LatestModifyDate>2015/02/11</LatestModifyDate>
+ </FileDescription>
+ <DataSet>
+  <Header frameNumber="0" totalRecord="3">
+   <Record serialNumber="0">
+    <Shape>rectangle</Shape>
+    <StartPoint>87, 91</StartPoint>
+    <Height>101</Height>
+    <Width>120</Width>
+   </Record>
+   <Record serialNumber="1">
+    <Shape>ellipse</Shape>
+    <StartPoint>261, 346</StartPoint>
+    <Height>37</Height>
+    <Width>49</Width>
+   </Record>
+   <Record serialNumber="2">
+    <Shape>circle</Shape>
+    <StartPoint>466, 222</StartPoint>
+    <Height>113</Height>
+    <Width>113</Width>
+   </Record>
+  </Header>
+  <Header frameNumber="1" totalRecord="1">
+   <Record serialNumber="0">
+    <Shape>rectangle</Shape>
+    <StartPoint>98, 97</StartPoint>
+    <Height>139</Height>
+    <Width>98</Width>
+   </Record>
+  </Header>
+  <Header frameNumber="2" totalRecord="2">
+   <Record serialNumber="0">
+    <Shape>rectangle</Shape>
+    <StartPoint>98, 97</StartPoint>
+    <Height>139</Height>
+    <Width>98</Width>
+   </Record>
+   <Record serialNumber="1">
+    <Shape>circle</Shape>
+    <StartPoint>357, 169</StartPoint>
+    <Height>128</Height>
+    <Width>128</Width>
+   </Record>
+  </Header>
+  <Header frameNumber="3" totalRecord="3">
+   <Record serialNumber="0">
+    <Shape>rectangle</Shape>
+    <StartPoint>98, 97</StartPoint>
+    <Height>139</Height>
+    <Width>98</Width>
+   </Record>
+   <Record serialNumber="1">
+    <Shape>circle</Shape>
+    <StartPoint>357, 169</StartPoint>
+    <Height>128</Height>
+    <Width>128</Width>
+   </Record>
+   <Record serialNumber="2">
+    <Shape>ellipse</Shape>
+    <StartPoint>290, 402</StartPoint>
+    <Height>44</Height>
+    <Width>156</Width>
+   </Record>
+  </Header>
+  <Header frameNumber="4" totalRecord="3">
+   <Record serialNumber="0">
+    <Shape>rectangle</Shape>
+    <StartPoint>98, 97</StartPoint>
+    <Height>139</Height>
+    <Width>98</Width>
+   </Record>
+   <Record serialNumber="1">
+    <Shape>circle</Shape>
+    <StartPoint>357, 169</StartPoint>
+    <Height>128</Height>
+    <Width>128</Width>
+   </Record>
+   <Record serialNumber="2">
+    <Shape>ellipse</Shape>
+    <StartPoint>290, 402</StartPoint>
+    <Height>156</Height>
+    <Width>44</Width>
+   </Record>
+  </Header>
+ </DataSet>
+</Root>
