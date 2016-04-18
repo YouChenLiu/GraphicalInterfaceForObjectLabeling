@@ -1,4 +1,4 @@
-#ifndef _VIDEOPROCESSOR_H_
+﻿#ifndef _VIDEOPROCESSOR_H_
 #define _VIDEOPROCESSOR_H_
 
 #include "../common.h"

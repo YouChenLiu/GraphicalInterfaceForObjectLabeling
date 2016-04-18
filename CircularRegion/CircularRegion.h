@@ -1,4 +1,4 @@
-#ifndef _CIRCULARREGION_H_
+﻿#ifndef _CIRCULARREGION_H_
 #define _CIRCULARREGION_H_
 
 #include "..\common.h"

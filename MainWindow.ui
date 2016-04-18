@@ -538,6 +538,9 @@
    <property name="text">
     <string>Sequence</string>
    </property>
+   <property name="shortcut">
+    <string>Ctrl+Shift+S</string>
+   </property>
   </action>
  </widget>
  <layoutdefault spacing="6" margin="11"/>

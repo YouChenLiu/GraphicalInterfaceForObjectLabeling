@@ -1,4 +1,4 @@
-#include "VideoProcessor.h"
+﻿#include "VideoProcessor.h"
 #include <QPixmap>
 
 VideoProcessor::VideoProcessor(QString filePath){
@@ -285,9 +285,9 @@ QImage VideoProcessor::transformMatToQImage(const cv::Mat& mat) const{
     static QVector<QRgb>  sColorTable;
     switch (mat.type()) {
     case CV_8UC4:    // 8-bit, 4 channel
-        return QImage( mat.data, mat.cols, mat.rows, mat.step, QImage::Format_RGB32 );
+        return QImage( mat.data, mat.cols, mat.rows, (int)mat.step, QImage::Format_RGB32 );
     case CV_8UC3:    // 8-bit, 3 channel
-        return QImage( mat.data, mat.cols, mat.rows, mat.step, QImage::Format_RGB888 ).rgbSwapped();
+        return QImage( mat.data, mat.cols, mat.rows, (int)mat.step, QImage::Format_RGB888 ).rgbSwapped();
     case CV_8UC1:    // 8-bit, 1 channel
         // only create our color table once
         if (sColorTable.isEmpty()) {

@@ -54,9 +54,9 @@ gcc: {
 }
 
 msvc: {
-    INCLUDEPATH += C:/opencv/build/include
+    INCLUDEPATH += C:/opencv_2411/build/include
 
-    LIBS += -LC:/opencv/build/x64/vc12/lib
+    LIBS += -LC:/opencv_2411/build/x64/vc12/lib
 
     CONFIG(debug, release|debug) {
         LIBS += -lopencv_core2411d \

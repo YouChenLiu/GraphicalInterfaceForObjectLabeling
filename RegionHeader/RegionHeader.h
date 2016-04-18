@@ -1,4 +1,4 @@
-#ifndef _REGIONHEADER_H_
+﻿#ifndef _REGIONHEADER_H_
 #define _REGIONHEADER_H_
 
 #include "..\common.h"
@@ -65,6 +65,8 @@ public:
     void sendCleanMessage(void);
     void sendRemoveMessage(void);
     void sendHitMessage(const QPoint point);
+    int getAllSelecedRegionID(void);
+    Region* getRegion(int serialNumber);
 protected:
 };
 #endif

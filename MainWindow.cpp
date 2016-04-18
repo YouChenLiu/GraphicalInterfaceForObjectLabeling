@@ -1,4 +1,4 @@
-#include "MainWindow.h"
+﻿#include "MainWindow.h"
 #include "ui_MainWindow.h"
 
 MainWindow::MainWindow(QWidget *parent) :
@@ -20,6 +20,10 @@ MainWindow::MainWindow(QWidget *parent) :
     isPlaying = false;
     isReadonly = true;
     hasModify = false;
+    ui->resultTable->setFocusPolicy(Qt::NoFocus);
+    ui->readonlyCheckBox->setFocusPolicy(Qt::NoFocus);
+    ui->positionSlider->setFocusPolicy(Qt::NoFocus);
+    ui->videoViewer->setFocusPolicy(Qt::StrongFocus);
 }
 
 MainWindow::~MainWindow()
@@ -33,7 +37,7 @@ void MainWindow::closeEvent(QCloseEvent *event)
     if (check == QMessageBox::StandardButton::No) {
         event->ignore();
     }
-    writeXmlFile();
+    on_actionClose_triggered();
 }
 
 void MainWindow::on_actionVideo_triggered()
@@ -70,7 +74,7 @@ void MainWindow::on_actionSequence_triggered()
 {
     SequenceDialog sequenceDialog(this);
     if (sequenceDialog.exec() == QDialog::Accepted) {
-        on_actionClose_triggered();
+//        on_actionClose_triggered();
         QString path = sequenceDialog.getPath();
         QString prefix = sequenceDialog.getPrefix();
         QString extension = sequenceDialog.getExtension();
@@ -220,6 +224,7 @@ bool MainWindow::createXmlFile(void)
 
 bool MainWindow::readXmlFile(void)
 {
+    xmlDocument = QDomDocument();
     QFile file(xmlFilePath);
     file.open(QIODevice::ReadOnly);
     if (!xmlDocument.setContent(&file)) {
@@ -447,7 +452,7 @@ void MainWindow::on_nextFrameButton_clicked()
         updateRegionHeader(frameNumber);
         updateVideoViewer();
         if (ui->positionSlider->maximum() <= frameNumber) {
-            ui->positionSlider->setRange((frameNumber / 500) * 500, frameNumber);
+            ui->positionSlider->setRange(ui->zeroPositionLabel->text().toInt(), frameNumber);
         }
         hasModify = false;
         ui->positionSlider->setValue(frameNumber);
@@ -486,21 +491,24 @@ void MainWindow::on_resultTable_itemClicked(QTableWidgetItem *item)
     /*  Sn    x     y   width   height  shape
      *  0     1     2     3       4       5
      */
-    header->hitRegion(rowDatas[0].toInt());
-    updateVideoViewer();
+
+    if (!isReadonly) {
+        header->sendCleanMessage();
+        header->hitRegion(rowDatas[0].toInt());
+        updateVideoViewer();
+    }
 }
 
 void MainWindow::on_readonlyCheckBox_stateChanged(int arg1)
 {
     if (arg1 == Qt::Checked) {
         isReadonly = true;
-        setModifyButtonsEnable(false);
-        ui->videoViewer->setEnabledDrawPreviewRegion(false);
     } else if (arg1 == Qt::Unchecked) {
         isReadonly = false;
-        setModifyButtonsEnable(true);
-        ui->videoViewer->setEnabledDrawPreviewRegion(true);
     }
+
+    setModifyButtonsEnable(!isReadonly);
+    ui->videoViewer->setEnabledDrawPreviewRegion(!isReadonly);
 }
 
 void MainWindow::on_playPauseButton_clicked()
@@ -592,10 +600,111 @@ void MainWindow::setInitState()
     ui->videoNameLabel->setText(tr("None"));
     ui->createDateLabel->setText(tr("None"));
     ui->modifyDateLabel->setText(tr("None"));
+    ui->zeroPositionLabel->setText(QString::number(0));
+
+}
+
+void MainWindow::keyPressEvent(QKeyEvent *event)
+{
+    //ui->statusBar->showMessage(QString("%1 Pressed").arg(event->text()));
+    int index = -1;
+    Region* region = nullptr;
+    if (header != nullptr) {
+        index = header->getAllSelecedRegionID();
+        region = header->getRegion(index);
+    }
+    switch (event->key()) {
+    case KEY_CANCLE:
+        ui->deleteButton->click();
+        break;
+    case KEY_NEXT_FRAME:
+
+        ui->nextFrameButton->click();
+        break;
+    case KEY_PREVIOUS_FRAME:
+        ui->preFrameButton->click();
+        break;
+    case Qt::Key_A:
+        if (index == -1) {
+            break;
+        }
+        switch (region->getShape()) {
+        case Shapes::Rectangle:
+            ui->videoViewer->clicked(region->getStartPoint() + QPoint(0, region->getHeight() / 2));
+            break;
+        default:
+            break;
+        }
+        break;
+    case Qt::Key_D:
+        if (index == -1) {
+            break;
+        }
+        switch (region->getShape()) {
+        case Shapes::Rectangle:
+            ui->videoViewer->clicked(region->getStartPoint() + QPoint(region->getWidth(), region->getHeight() / 2));
+            break;
+        default:
+            break;
+        }
+        break;
+    case Qt::Key_W:
+        if (index == -1) {
+            break;
+        }
+        switch (region->getShape()) {
+        case Shapes::Rectangle:
+            ui->videoViewer->clicked(region->getStartPoint() + QPoint(region->getWidth() / 2, 0));
+            break;
+        default:
+            break;
+        }
+        break;
+    case Qt::Key_S:
+        if (index == -1) {
+            break;
+        }
+        switch (region->getShape()) {
+        case Shapes::Rectangle:
+            ui->videoViewer->clicked(region->getStartPoint() + QPoint(region->getWidth() / 2, region->getHeight()));
+            break;
+        default:
+            break;
+        }
+        break;
+    case KEY_LEFT:
+        ui->leftButton->click();
+        break;
+    case KEY_RIGHT:
+        ui->rightButton->click();
+        break;
+    case KEY_UP:
+        ui->upButton->click();
+        break;
+    case KEY_DOWN:
+        ui->downButton->click();
+        break;
+    case KEY_PLAY_PAUSE:
+        ui->playPauseButton->click();
+        break;
+    case KEY_SHAPE_1:
+        ui->rectangleButton->click();
+        break;
+    case KEY_SHAPE_2:
+        ui->ellipseButton->click();
+        break;
+    case KEY_SHAPE_3:
+        ui->circleButton->click();
+    default:
+        break;
+    }
 }
 
 void MainWindow::on_positionSlider_valueChanged(int value)
 {
+    if (video == nullptr) {
+        return;
+    }
     video->jumpFrame(value);
     updateRegionHeader(value);
     updateVideoViewer();

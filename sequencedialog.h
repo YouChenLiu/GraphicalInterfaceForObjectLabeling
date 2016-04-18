@@ -1,4 +1,4 @@
-#ifndef SEQUENCEDIALOG_H
+﻿#ifndef SEQUENCEDIALOG_H
 #define SEQUENCEDIALOG_H
 
 #include <QDialog>
@@ -27,6 +27,11 @@ public:
     int getPaddingLength(void) const;
 
     int getFirstNumber(void) const;
+
+    void dragEnterEvent(QDragEnterEvent*);
+    void dragMoveEvent(QDragMoveEvent*);
+    void dragLeaveEvent(QDragLeaveEvent*);
+    void dropEvent(QDropEvent*);
 
 private slots:
     void on_browsingButton_clicked();

@@ -113,7 +113,7 @@ private:
     void setModifyButtonsEnable(bool enabled);
     void updateShapeButtons(void);
     void setInitState(void);
-
+    void keyPressEvent(QKeyEvent *event);
 };
 
 #endif // MAINWINDOW_H

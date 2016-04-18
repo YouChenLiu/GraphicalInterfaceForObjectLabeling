@@ -1,4 +1,4 @@
-#include "ImageSequence.h"
+﻿#include "ImageSequence.h"
 
 ImageSequence::ImageSequence(const std::string& sRootPath, const std::string& sPrefix, const std::string& sExtension, bool bIsColor) {
     init();
@@ -88,7 +88,7 @@ void ImageSequence::setAttribute(const Attribute attrbute, int iValue) {
 void ImageSequence::setAttribute(const Attribute attrbute, char cValue) {
     switch (attrbute) {
     case Attribute::PADDING_CHARACTER:
-        m_iFirstNumber = cValue;
+        m_cPaddingCharacter = cValue;
         break;
     default:
         qDebug("ImageSequence::Error occur when setting character attribute");

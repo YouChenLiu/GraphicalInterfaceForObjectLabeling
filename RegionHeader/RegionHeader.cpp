@@ -1,4 +1,4 @@
-#include "RegionHeader.h"
+﻿#include "RegionHeader.h"
 
 RegionHeader::RegionHeader(int frameNumber){
     init();
@@ -270,4 +270,30 @@ void RegionHeader::sendHitMessage(const QPoint point)
         }
         region = region->getNextRegion();
     }
+}
+
+int RegionHeader::getAllSelecedRegionID()
+{
+    Region *region = getFirstRegion();
+    while (region) {
+        if (region->getIsAllSelected()) {
+            return region->getSerialNumber();
+        }
+        region = region->getNextRegion();
+    }
+
+    return -1;
+}
+
+Region *RegionHeader::getRegion(int serialNumber)
+{
+    Region *region = getFirstRegion();
+    while (region) {
+        if (region->getSerialNumber() == serialNumber) {
+            return region;
+        }
+        region = region->getNextRegion();
+    }
+
+    return nullptr;
 }

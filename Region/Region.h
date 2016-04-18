@@ -1,4 +1,4 @@
-#ifndef _REGION_H_
+﻿#ifndef _REGION_H_
 #define _REGION_H_
 
 #include <QSize>

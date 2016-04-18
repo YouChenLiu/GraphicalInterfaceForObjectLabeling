@@ -1,4 +1,4 @@
-#include "CircularRegion.h"
+﻿#include "CircularRegion.h"
 
 CircularRegion::CircularRegion(int serialNumber, QPoint center, int radius) : EllipticalRegion(serialNumber, center, radius, radius, Shapes::Circle) {
     setRadius(radius);

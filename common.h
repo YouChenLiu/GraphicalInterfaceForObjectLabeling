@@ -1,4 +1,4 @@
-#ifndef _COMMON_H_
+﻿#ifndef _COMMON_H_
 #define _COMMON_H_
 
 #define SQUARE(x) ((x) * (x))
@@ -15,7 +15,7 @@
 
 /*程式中繪圖相關的參數設定*/
 //調整用原點之半徑
-#define MODIFY_POINT_RADIUS (5)
+#define MODIFY_POINT_RADIUS (3)
 //平常狀態繪出區域範圍使用的顏色
 #define NOMAL_REGION_COLOR (Qt::green)
 //調整狀態繪出區域範圍使用的顏色
@@ -29,33 +29,33 @@
 
 /*程式中所使用到的按鍵定義*/
 //按鍵_上
-#define KEY_UP 'w'
+#define KEY_UP (Qt::Key_T)
 //按鍵_下
-#define KEY_DOWN 's'
+#define KEY_DOWN (Qt::Key_G)
 //按鍵_左
-#define KEY_LEFT 'a'
+#define KEY_LEFT (Qt::Key_F)
 //按鍵_右
-#define KEY_RIGHT 'd'
+#define KEY_RIGHT (Qt::Key_H)
 //按鍵_前一畫面
-#define KEY_PREVIOUS_FRAME 'q'
+#define KEY_PREVIOUS_FRAME (Qt::Key_Comma)
 //按鍵_下一畫面
-#define KEY_NEXT_FRAME 'e'
+#define KEY_NEXT_FRAME (Qt::Key_Period)
 //按鍵_播放_暫停
-#define KEY_PLAY_PAUSE ' '
+#define KEY_PLAY_PAUSE (Qt::Key_Space)
 //按鍵_離開程式
-#define KEY_ESC 27
+#define KEY_ESC (Qt::Key_Escape)
 //按鍵_取消選取
-#define KEY_CANCLE 'c'
+#define KEY_CANCLE (Qt::Key_Delete)
 //按鍵_重新播放
-#define KEY_REPLAY 'r'
+#define KEY_REPLAY (Qt::Key_R)
 //按鍵_沿用畫面上的框選區域
-#define KEY_FORCE_USE 'f'
+#define KEY_FORCE_USE (Qt::Key_C)
 //按鍵_框選形狀1
-#define KEY_SHAPE_1 '1'
+#define KEY_SHAPE_1 (Qt::Key_1)
 //按鍵_框選形狀2
-#define KEY_SHAPE_2 '2'
+#define KEY_SHAPE_2 (Qt::Key_2)
 //按鍵_框選形狀3
-#define KEY_SHAPE_3 '3'
+#define KEY_SHAPE_3 (Qt::Key_3)
 
 //設定FPS
 #define FRAME_RATE (30)
